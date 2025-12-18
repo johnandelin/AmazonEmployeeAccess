@@ -8,6 +8,16 @@ amazon_test <- vroom("test.csv")
 amazon_train <- amazon_train|>
   mutate(ACTION = factor(ACTION)) # I turned the response into a Factor because it is binary (0/1)
 
+#### EDA ####
+amazon_train |>
+  ggplot(aes(x = ACTION)) +
+  geom_bar() +
+  labs(
+    x = "Access Decision",
+    y = "Count",
+    title = "Distribution of Employee Access Decisions"
+  )
+
 #### logistic regression ####
 # defining my recipe for logistic regression.
 my_recipe <- recipe(ACTION ~ ., data = amazon_train) |>
